@@ -20,6 +20,9 @@ COPY . .
 # install laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# create .env for build-time commands (Railway env vars take precedence at runtime)
+RUN cp .env.example .env
+
 # generate key
 RUN php artisan key:generate
 
